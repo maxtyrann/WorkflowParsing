@@ -1,0 +1,202 @@
+﻿{
+  "id": "WFL-937534795-SSDF384738",
+  "name": "sr_vb_nd",
+  "nodes": [
+    {
+      "id": "bb9f5bb4-5d15-4cb6-8854-d68caefdae67",
+      "group": "speech-recognition",
+      "name": "recognize",
+      "fields": [
+        {
+          "id": "some guid",
+          "name": "url",
+          "label": "URL",
+          "direction": "input",
+          "type": "text",
+          "hint": "http://www.domain.com/blabla",
+          "placeholder": "Your friendly placeholder",
+          "value": "https://web.sestek.sr.com"
+        },
+        {
+          "id": "some guid",
+          "name": "language",
+          "label": "Language",
+          "direction": "input",
+          "type": "list",
+          "hint": "http://www.domain.com/blabla",
+          "values": [
+            {
+              "id": "some guid1",
+              "value": "en-US"
+            },
+            {
+              "id": "some guid2",
+              "value": "tr-TR"
+            }
+          ],
+          "selectedValue": "some guid1"
+        },
+        {
+          "id": "some guid",
+          "name": "hede",
+          "label": "hede",
+          "direction": "input",
+          "type": "text",
+          "hint": "http://www.domain.com/blabla",
+          "placeholder": "Your friendly placeholder",
+          "value": "https://web.sestek.sr.com"
+        }
+      ],
+      "metadata": [
+        {
+          "key": "keyA",
+          "value": "valueA"
+        },
+        {
+          "key": "keyB",
+          "value": "valueB"
+        },
+        {
+          "key": "keyC",
+          "value": "valueC"
+        }
+      ]
+    },
+    {
+      "id": "eb4e7c8a-f2df-4393-9ce1-46b276db3134",
+      "group": "voice-biometrics",
+      "name": "validate",
+      "metadata": [
+        {
+          "key": "keyA",
+          "value": "valueA"
+        },
+        {
+          "key": "keyB",
+          "value": "valueB"
+        },
+        {
+          "key": "keyC",
+          "value": "valueC"
+        }
+      ]
+    },
+    {
+      "id": "79e3a150-1394-43aa-9cf7-5f0c444dc7d2",
+      "group": "natural-dialog",
+      "name": "search",
+      "metadata": [
+        {
+          "key": "keyA",
+          "value": "valueA"
+        },
+        {
+          "key": "keyB",
+          "value": "valueB"
+        },
+        {
+          "key": "keyC",
+          "value": "valueC"
+        }
+      ]
+    },
+    {
+      "id": "33540351-b586-48f5-89af-8c09de0f6fa3",
+      "group": "conditionals",
+      "name": "if",
+      "metadata": [
+        {
+          "key": "keyA",
+          "value": "valueA"
+        },
+        {
+          "key": "keyB",
+          "value": "valueB"
+        },
+        {
+          "key": "keyC",
+          "value": "valueC"
+        }
+      ]
+    },
+    {
+      "id": "20ac5166-f191-4a95-a9a2-ca36179980c8",
+      "group": "parallel",
+      "name": "split"
+    },
+    {
+      "id": "ad484aa9-4216-48cb-9abf-a98fc221196e",
+      "group": "debug",
+      "name": "output1"
+    },
+    {
+      "id": "8c96bb71-434e-40f7-bfd2-a53701398a40",
+      "group": "debug",
+      "name": "input"
+    },
+    {
+      "id": "ef0628c7-c81a-4c1e-9314-998066adec86",
+      "group": "debug",
+      "name": "output2"
+    },
+    {
+      "id": "9cd1ea37-a1b2-427a-9324-8c9700f7a91a",
+      "group": "debug",
+      "name": "output3"
+    }
+  ],
+  "connections": [
+    {
+      "type":  "single",
+      "source": "8c96bb71-434e-40f7-bfd2-a53701398a40",
+      "target": "20ac5166-f191-4a95-a9a2-ca36179980c8"
+    },
+    {
+      "type": "single",
+      "source": "20ac5166-f191-4a95-a9a2-ca36179980c8",
+      "target": "bb9f5bb4-5d15-4cb6-8854-d68caefdae67"
+    },
+    {
+      "type": "single",
+      "source": "20ac5166-f191-4a95-a9a2-ca36179980c8",
+      "target": "eb4e7c8a-f2df-4393-9ce1-46b276db3134"
+    },
+    {
+      "type": "single",
+      "source": "bb9f5bb4-5d15-4cb6-8854-d68caefdae67",
+      "target": "79e3a150-1394-43aa-9cf7-5f0c444dc7d2"
+    },
+    {
+      "type": "single",
+      "source": "79e3a150-1394-43aa-9cf7-5f0c444dc7d2",
+      "target": "ad484aa9-4216-48cb-9abf-a98fc221196e"
+    },
+    {
+      "type": "single",
+      "source": "eb4e7c8a-f2df-4393-9ce1-46b276db3134",
+      "target": "33540351-b586-48f5-89af-8c09de0f6fa3"
+    },
+    {
+      "type": "multiple",
+      "source": "33540351-b586-48f5-89af-8c09de0f6fa3",
+      "targets": [
+        "ef0628c7-c81a-4c1e-9314-998066adec86",
+        "9cd1ea37-a1b2-427a-9324-8c9700f7a91a"
+      ]
+    }
+  ],
+  "metadata": [
+    {
+      "key": "keyA",
+      "value": "valueA"
+    },
+    {
+      "key": "keyB",
+      "value": "valueB"
+    },
+    {
+      "key": "keyC",
+      "value": "valueC"
+    }
+  ]
+}

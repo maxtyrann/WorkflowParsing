@@ -1,0 +1,157 @@
+﻿// adapter (transform), filter
+// if, while, loop
+// split, join, all, any -- with or without expression
+// debug:input, debug:output
+// trigger, action, cron
+{
+	"id": "WFL-937534795-SSDF384738",
+	"name": "sr_vb_nd",
+	"nodes": [
+		{
+			"id": "bb9f5bb4-5d15-4cb6-8854-d68caefdae67",
+			"group": "speech-recognition",
+			"name": "recognize",
+			// fields may have different types
+			"fields": [
+				{
+					"id": "some guid",
+					"name": "url",
+					"label": "URL",
+					"direction": "input",
+					"type": "text",
+					"hint": "http://www.domain.com/blabla",
+					"placeholder": "Your friendly placeholder",
+					"value": "https://web.sestek.sr.com"
+				},
+				{
+					"id": "some guid",
+					"name": "language",
+					"label": "Language",
+					"direction": "input",
+					"type": "list",
+					"hint": "http://www.domain.com/blabla",
+					"values": [
+						{
+							"id": "some guid1",
+							"value": "en-US"
+						},
+						{
+							"id": "some guid2",
+							"value": "tr-TR"
+						}
+					],
+					"selected_value": "some guid1"
+				},
+				{
+					"id": "some guid",
+					"name": "hede",
+					"label": "hede",
+					"direction": "input",
+					"type": "text",
+					"hint": "http://www.domain.com/blabla",
+					"placeholder": "Your friendly placeholder",
+					"value": "https://web.sestek.sr.com"
+				}
+			],
+			"metadata": {
+				"keyA": "valueA",
+				"keyB": "valueB",
+				"expression":  "valueExpression"
+			}
+		},
+		{
+			"id": "eb4e7c8a-f2df-4393-9ce1-46b276db3134",
+			"group": "voice-biometrics",
+			"name": "validate",
+			"metadata": [
+				{
+					"url": "https://web.sestek.vb.com",
+					"language": "tr-TR"
+				}
+			]
+		},
+		{
+			"id": "79e3a150-1394-43aa-9cf7-5f0c444dc7d2",
+			"group": "natural-dialog",
+			"name": "search",
+			"metadata": [
+				{
+					"url": "https://web.sestek.nd.com",
+					"language": "tr-TR"
+				}
+			]
+		},
+		{
+			"id": "33540351-b586-48f5-89af-8c09de0f6fa3",
+			"group": "conditionals",
+			"name": "if",
+			"metadata": {
+				"keyA": "valueA",
+				"keyB": "valueB",
+				"expression": "msg.payload.validated == true"
+			}
+		},
+		{
+			"id": "20ac5166-f191-4a95-a9a2-ca36179980c8",
+			"group": "parallel",
+			"name": "split",
+		},
+		{
+			"id": "ad484aa9-4216-48cb-9abf-a98fc221196e",
+			"group": "debug",
+			"name": "output1"
+		},
+		{
+			"id": "8c96bb71-434e-40f7-bfd2-a53701398a40",
+			"group": "debug",
+			"name": "input"
+		},
+		{
+			"id": "ef0628c7-c81a-4c1e-9314-998066adec86",
+			"group": "debug",
+			"name": "output2"
+		},
+		{
+			"id": "9cd1ea37-a1b2-427a-9324-8c9700f7a91a",
+			"group": "debug",
+			"name": "output3"
+		}
+	],
+	"connections": [
+		{
+			"source": "8c96bb71-434e-40f7-bfd2-a53701398a40", // input
+			"target": "20ac5166-f191-4a95-a9a2-ca36179980c8" // split
+		},
+		{
+			"source": "20ac5166-f191-4a95-a9a2-ca36179980c8", // split
+			"target": "bb9f5bb4-5d15-4cb6-8854-d68caefdae67" // sr
+		},
+		{
+			"source": "20ac5166-f191-4a95-a9a2-ca36179980c8", // split
+			"target": "eb4e7c8a-f2df-4393-9ce1-46b276db3134" // vb
+		},
+		{
+			"source": "bb9f5bb4-5d15-4cb6-8854-d68caefdae67", // sr
+			"target": "79e3a150-1394-43aa-9cf7-5f0c444dc7d2" // nd
+		},
+		{
+			"source": "79e3a150-1394-43aa-9cf7-5f0c444dc7d2", // nd
+			"target": "ad484aa9-4216-48cb-9abf-a98fc221196e" // debug_output1, end of branch
+		},
+		{
+			"source": "eb4e7c8a-f2df-4393-9ce1-46b276db3134", // vb
+			"target": "33540351-b586-48f5-89af-8c09de0f6fa3" // if
+		},
+		{
+			"source": "33540351-b586-48f5-89af-8c09de0f6fa3", // if
+			"targets": [
+				"ef0628c7-c81a-4c1e-9314-998066adec86", // False [0]
+				"9cd1ea37-a1b2-427a-9324-8c9700f7a91a" // True [1], eğer Target adedi 2'den fazla ise zaten If ile alakası yok demektir
+			]
+		}
+	],
+	"metadata": {
+		"key1": "value1",
+		"key2": "value2"
+	}
+}
